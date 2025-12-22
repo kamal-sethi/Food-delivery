@@ -7,8 +7,11 @@ import {
   ShoppingBasket,
   ShoppingBasketIcon,
 } from "lucide-react";
+type propType = {
+  nextStep: (n: number) => void;
+};
 
-const Welcome = () => {
+const Welcome = ({ nextStep }: propType) => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen text-center p-6 gap-3 ">
       <motion.div
@@ -46,6 +49,7 @@ const Welcome = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.8 }}
         className="inline-flex mt-8 items-center gap-2 cursor-pointer bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-8 rounded-2xl shadow-md transition-all duration-200"
+        onClick={() => nextStep(2)}
       >
         Next <ArrowRight />
       </motion.button>
