@@ -1,3 +1,4 @@
+"use client";
 import {
   ArrowLeft,
   EyeIcon,
@@ -19,72 +20,33 @@ import axios from "axios";
 import { handler } from "next/dist/build/templates/app-page";
 import { useRouter } from "next/navigation";
 
-type propType = {
-  nextStep: (n: number) => void;
-};
-
-const RegisterForm = ({ nextStep }: propType) => {
-  const [name, setName] = React.useState("");
+const Login = () => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [showPassword, setShowPassword] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
   const router = useRouter();
 
-  const handleRegister = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    try {
-      const result = await axios.post("/api/auth/register", {
-        name,
-        email,
-        password,
-      });
-      console.log(result.data);
-      setLoading(false);
-    } catch (error) {
-      console.log(error);
-      setLoading(false);
-    }
-  };
   return (
     <div className="flex flex-col items-center justify-center min-h-screen px-6 py-10 bg-white relative">
-      <div
-        className="absolute top-6 left-6 flex items-center gap-2 text-green-700 hover-text-green-800 transition-colors cursor-pointer"
-        onClick={() => nextStep(1)}
-      >
-        <ArrowLeft className="w-5 h-5 " />
-        <span className="font-medium">Back</span>
-      </div>
       <motion.h1
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.5 }}
         className="text-3xl font-extrabold md:text-4xl text-green-700 mb-2"
       >
-        Create Account
+        Welcome Back!
       </motion.h1>
       <p className="text-gray flex items-center gap-2">
-        Join Snapcart today <Leaf className="h-5 w-5 text-green-600 " />
+        Login to Snapcart <Leaf className="h-5 w-5 text-green-600 " />
       </p>
       {/* Form Starts Here */}
       <motion.form
-        onSubmit={handleRegister}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.5 }}
         className="flex flex-col gap-5 w-full max-w-sm mt-4"
       >
-        <div className="relative">
-          <User className="absolute left-3 top-3.5 w-5 h-5 text-gray-400" />
-          <input
-            placeholder="Your Name"
-            required
-            className="w-full border border-gray-300 rounded-xl py-3 pl-10 pr-4 text-gray-800 focus-ring-2 focus:ring-green-500 focus-outline-none"
-            onChange={(e) => setName(e.target.value)}
-            value={name}
-          />
-        </div>
         <div className="relative">
           <Mail className="absolute left-3 top-3.5 w-5 h-5 text-gray-400" />
           <input
@@ -118,7 +80,7 @@ const RegisterForm = ({ nextStep }: propType) => {
           )}
         </div>
         {(() => {
-          const formValidation = name !== "" && email !== "" && password !== "";
+          const formValidation = email !== "" && password !== "";
           return (
             <button
               disabled={!formValidation || loading}
@@ -132,7 +94,7 @@ const RegisterForm = ({ nextStep }: propType) => {
               {loading ? (
                 <Loader2 className="w-5 h-5 animate-spin " />
               ) : (
-                "Register"
+                "Login"
               )}
             </button>
           );
@@ -152,17 +114,17 @@ const RegisterForm = ({ nextStep }: propType) => {
         </button>
       </motion.form>
       <p
-        className="flex items-center mt-6 gap-1 text-gray-600 font-semibold cursor-pointer "
-        onClick={() => router.push("/login")}
+        className="flex items-center mt-6 gap-1 text-gray-600 font-semibold cursor-pointer  "
+        onClick={() => router.push("/register")}
       >
-        Already have an account?
+        Want to create an account?
         <LogIn className="w-4 h-4 " />{" "}
-        <Link href="/login">
-          <span className="text-green-600">Sign in</span>
+        <Link href="/register">
+          <span className="text-green-600">Sign up</span>
         </Link>
       </p>
     </div>
   );
 };
 
-export default RegisterForm;
+export default Login;
