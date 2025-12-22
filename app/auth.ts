@@ -32,6 +32,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             id: user._id.toString(),
             email: user.email,
             name: user.name,
+            role: user.role,
           };
         } catch (error) {
           throw new Error(`Authorize error: ${error}`);
@@ -69,4 +70,3 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   },
   secret: process.env.AUTH_SECRET,
 });
- 

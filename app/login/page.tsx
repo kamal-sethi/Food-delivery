@@ -19,6 +19,7 @@ import Link from "next/link";
 import axios from "axios";
 import { handler } from "next/dist/build/templates/app-page";
 import { useRouter } from "next/navigation";
+import { signIn, useSession } from "next-auth/react";
 
 const Login = () => {
   const [email, setEmail] = React.useState("");
@@ -26,6 +27,23 @@ const Login = () => {
   const [showPassword, setShowPassword] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
   const router = useRouter();
+  const session = useSession();
+  console.log(session);
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+      });
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen px-6 py-10 bg-white relative">
@@ -42,6 +60,7 @@ const Login = () => {
       </p>
       {/* Form Starts Here */}
       <motion.form
+        onSubmit={handleLogin}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.5 }}
