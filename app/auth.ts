@@ -43,6 +43,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     Google({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_SECRET_KEY,
+      authorization: {
+        params: {
+          prompt: "select_account",
+        },
+      },
     }),
   ],
   callbacks: {
@@ -50,6 +55,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       if (account?.provider === "google") {
         await connectDb();
         let dbUser = await User.findOne({ email: user.email });
+      
         if (!dbUser) {
           dbUser = new User({
             name: user.name,
@@ -57,6 +63,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             image: user.image,
           });
         }
+       
+        await dbUser.save();
         user.id = dbUser._id.toString();
         user.role = dbUser.role;
       }
