@@ -18,6 +18,7 @@ import Link from "next/link";
 import axios from "axios";
 import { handler } from "next/dist/build/templates/app-page";
 import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 
 type propType = {
   nextStep: (n: number) => void;
@@ -146,6 +147,7 @@ const RegisterForm = ({ nextStep }: propType) => {
           className="w-full flex items-center justify-center gap-3
         border border-gray-300 hover:bg-gray-50 py-3 rounded-xl text-gray-700
         font-medium transition-all duration-200 cursor-pointer"
+          onClick={() => signIn("google")}
         >
           <Image src={google_image} alt="google" width={20} height={20} />
           Continue with Google
