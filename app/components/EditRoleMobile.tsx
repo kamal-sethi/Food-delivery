@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Bike, User, UserCog } from "lucide-react";
 import axios from "axios";
+import { redirect } from "next/navigation";
 
 const EditRoleMobile = () => {
   const [roles, setRoles] = useState([
@@ -19,7 +20,7 @@ const EditRoleMobile = () => {
         role: selectedRole,
         mobile,
       });
-      console.log(result.data);
+      redirect("/");
     } catch (error) {
       console.log(error);
     }

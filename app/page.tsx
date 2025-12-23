@@ -4,6 +4,7 @@ import User from "./models/user.model";
 import { auth } from "./auth";
 import { redirect } from "next/navigation";
 import EditRoleMobile from "./components/EditRoleMobile";
+import Nav from "./components/Nav";
 
 export default async function Home() {
   await connectDb();
@@ -18,6 +19,10 @@ export default async function Home() {
   if (InComplete) {
     return <EditRoleMobile />;
   }
-
-  return <div></div>;
+  const plainUser = JSON.parse(JSON.stringify(user));
+  return (
+    <>
+      <Nav user={plainUser} />
+    </>
+  );
 }
