@@ -1,5 +1,5 @@
-import { useSession } from "next-auth/react";
-import { v2 as cloudinary, UploadStream } from "cloudinary";
+
+import { v2 as cloudinary} from "cloudinary";
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_DB_NAME,
@@ -11,7 +11,6 @@ const uploadOnCloudinary = async (file: Blob): Promise<string | null> => {
   if (!file) {
     return null;
   }
-
   try {
     const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
