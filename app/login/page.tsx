@@ -20,6 +20,7 @@ import axios from "axios";
 import { handler } from "next/dist/build/templates/app-page";
 import { useRouter } from "next/navigation";
 import { signIn, useSession } from "next-auth/react";
+import { convertServerPatchToFullTree } from "next/dist/client/components/segment-cache/navigation";
 
 const Login = () => {
   const [email, setEmail] = React.useState("");
@@ -33,12 +34,13 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      await signIn("credentials", {
+      const result = await signIn("credentials", {
         email,
         password,
-        redirect: false,
+        redirect: true,
       });
       setLoading(false);
+      router.push("/");
     } catch (error) {
       console.log(error);
       setLoading(false);

@@ -17,7 +17,7 @@ import google_image from "../assets/google_image.png";
 import Link from "next/link";
 import axios from "axios";
 import { handler } from "next/dist/build/templates/app-page";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 
 type propType = {
@@ -41,10 +41,10 @@ const RegisterForm = ({ nextStep }: propType) => {
         email,
         password,
       });
-      console.log(result.data);
+
       setLoading(false);
+      router.push("/login");
     } catch (error) {
-      console.log(error);
       setLoading(false);
     }
   };
