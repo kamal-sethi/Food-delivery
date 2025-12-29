@@ -55,7 +55,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       if (account?.provider === "google") {
         await connectDb();
         let dbUser = await User.findOne({ email: user.email });
-      
+
         if (!dbUser) {
           dbUser = new User({
             name: user.name,
@@ -63,19 +63,22 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             image: user.image,
           });
         }
-       
+
         await dbUser.save();
         user.id = dbUser._id.toString();
         user.role = dbUser.role;
       }
       return true;
     },
-    jwt({ token, user }) {
+    jwt({ token, user, trigger, session }) {
       if (user) {
         (token.id = user.id),
           (token.name = user.name),
           (token.email = user.email),
           (token.role = user.role);
+      }
+      if (trigger == "update") {
+        token.role = session.role;
       }
       return token;
     },

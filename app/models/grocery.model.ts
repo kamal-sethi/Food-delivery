@@ -20,16 +20,7 @@ const grocerySchema = new mongoose.Schema<IGrocery>(
     category: {
       type: String,
       enum: [
-        "Fruits & Vegetables",
-        "Dairy & Eggs",
-        "Rice, Atta & Grains",
-        "Snacks & Biscuits",
-        "Spices & Masalas",
-        "Beverages & Drinks",
-        "Personal Care",
-        "Household Essentials",
-        "Instant & Packaged Food",
-        "Baby & Pet Care",
+        c
       ],
       required: true,
     },
@@ -39,6 +30,7 @@ const grocerySchema = new mongoose.Schema<IGrocery>(
     },
     unit: {
       type: String,
+      enum: ["kg", "g", "liter", "ml", "piece", "pack"],
       required: true,
     },
     image: {

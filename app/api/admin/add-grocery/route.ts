@@ -31,6 +31,7 @@ export async function POST(req: NextRequest) {
       unit,
       image: imageUrl,
     });
+    console.log(grocery);
     return NextResponse.json(grocery, { status: 201 });
   } catch (error) {
     return NextResponse.json(
