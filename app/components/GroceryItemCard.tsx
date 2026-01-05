@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import React from "react";
 import { motion } from "motion/react";
 import Image from "next/image";
-import { PlusCircle, ShoppingCart } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 
 interface IGrocery {
   _id?: mongoose.Types.ObjectId;
@@ -53,7 +53,7 @@ const GroceryItemCard = ({ item }: { item: IGrocery }) => {
         <motion.button
           className="mt-4 flex items-center justify-center gap-3 bg-green-600 hover:bg-green-700
         text-white rounded-full cursor-pointer py-2 px- text-sm font-medium transition-all"
-        whileTap={{scale:0.96}}
+          whileTap={{ scale: 0.96 }}
         >
           <ShoppingCart className="w-4 h-4" />
           Add to Cart
