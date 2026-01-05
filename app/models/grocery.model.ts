@@ -20,7 +20,16 @@ const grocerySchema = new mongoose.Schema<IGrocery>(
     category: {
       type: String,
       enum: [
-        c
+        "Fruits & Vegetables",
+        "Dairy & Eggs",
+        "Rice, Atta & Grains",
+        "Snacks & Biscuits",
+        "Spices & Masalas",
+        "Beverages & Drinks",
+        "Personal Care",
+        "Household Essentials",
+        "Instant & Packaged Food",
+        "Baby & Pet Care"
       ],
       required: true,
     },
@@ -35,7 +44,7 @@ const grocerySchema = new mongoose.Schema<IGrocery>(
     },
     image: {
       type: String,
-      required: true,
+      // required: true,
     },
   },
   { timestamps: true }
