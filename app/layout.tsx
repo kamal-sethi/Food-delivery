@@ -4,6 +4,7 @@ import "./globals.css";
 import { SessionProvider } from "next-auth/react";
 import Provider from "./provider";
 import StoreProvider from "./redux/StoreProvider";
+import InitUser from "./InitUser";
 
 export const metadata: Metadata = {
   title: "Snap Cart | 10 minutes grocery delivery app",
@@ -19,7 +20,10 @@ export default function RootLayout({
     <html lang="en">
       <body className="w-full min-h-[200vh] bg-linear-to-b from-green-100 to-white">
         <Provider>
-          <StoreProvider>{children}</StoreProvider>
+          <StoreProvider>
+            <InitUser />
+            {children}
+          </StoreProvider>
         </Provider>
       </body>
     </html>

@@ -3,8 +3,12 @@ import { Leaf, ShoppingBasket, Smartphone, Truck } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 
 const HeroSection = () => {
+  const { userData } = useSelector((state: RootState) => state.user);
+ 
   const slides = [
     {
       id: 1,
@@ -99,8 +103,9 @@ const HeroSection = () => {
         {slides.map((_, index) => (
           <button
             key={index}
-            className={`w-3 h-3 rounded-full transition-all ${(index ==
-              currentSlide ? "bg-white w-6" : "bg-white/50")}`}
+            className={`w-3 h-3 rounded-full transition-all ${
+              index == currentSlide ? "bg-white w-6" : "bg-white/50"
+            }`}
           />
         ))}
       </div>

@@ -16,6 +16,9 @@ import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { signOut } from "next-auth/react";
+// import { RootState } from "@reduxjs/toolkit/query";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 
 interface IUser {
   _id?: mongoose.Types.ObjectId;
@@ -28,6 +31,7 @@ interface IUser {
 }
 
 const Nav = ({ user }: { user: IUser }) => {
+  const { cartData } = useSelector((state: RootState) => state.cart);
   const [open, setOpen] = useState(false);
   const profileDropDown = useRef<HTMLDivElement>(null);
   const [searchBarOpen, setSearchBarOpen] = useState(false);
@@ -81,7 +85,7 @@ const Nav = ({ user }: { user: IUser }) => {
             className="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 flex
           items-center justify-center rounded-full font-semibold shadow  "
           >
-            0
+            {cartData.length}
           </span>
         </Link>
         <div className="relative" ref={profileDropDown}>
