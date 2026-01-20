@@ -12,13 +12,15 @@ import {
   deleteItem,
   increaseQuantity,
 } from "@/app/redux/cartSlice";
-
+// import { Router } from "next/router";
+// import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 const CartPage = () => {
   const { cartData, subTotal, finalTotal, deliveryFee } = useSelector(
-    (state: RootState) => state.cart
+    (state: RootState) => state.cart,
   );
   const dispatch = useDispatch<AppDispatch>();
-
+  const router = useRouter();
   return (
     <div className="w-[95%] sm:w-[90%] md:w-[80%] max-w-7xl mx-auto mt-8 ">
       {/* Back Link */}
@@ -65,7 +67,7 @@ const CartPage = () => {
         /* Flex Container: Products LEFT, Order Summary RIGHT */
         <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-start mt-10">
           {/* Products Section - LEFT SIDE (scrollable) */}
-        <div className="w-full md:w-[65%] flex flex-col gap-2 ">
+          <div className="w-full md:w-[65%] flex flex-col gap-2 ">
             <AnimatePresence>
               {cartData.map((item, index) => (
                 <motion.div
@@ -91,7 +93,9 @@ const CartPage = () => {
                     <h3 className="text-base sm:text-lg font-semibold text-gray-800 line-clamp-1">
                       {item.name}
                     </h3>
-                    <p className="text-xs sm:text-sm text-gray-500">{item.unit}</p>
+                    <p className="text-xs sm:text-sm text-gray-500">
+                      {item.unit}
+                    </p>
                     <p className="text-green-700 font-bold mt-1 text-sm sm:text-base">
                       ₹{Number(item.price) * item.quantity}
                     </p>
@@ -143,21 +147,28 @@ const CartPage = () => {
               <div className="space-y-3 text-gray-700 text-sm sm:text-base">
                 <div className="flex justify-between">
                   <span>Subtotal</span>
-                  <span className="text-green-700 font-semibold">₹{subTotal}</span>
+                  <span className="text-green-700 font-semibold">
+                    ₹{subTotal}
+                  </span>
                 </div>
                 <div className="flex justify-between">
                   <span>Delivery Fee</span>
-                  <span className="text-green-700 font-semibold">₹{deliveryFee}</span>
+                  <span className="text-green-700 font-semibold">
+                    ₹{deliveryFee}
+                  </span>
                 </div>
                 <hr className="my-3" />
                 <div className="flex justify-between font-bold text-lg">
                   <span>Final Total</span>
-                  <span className="text-green-700 font-semibold">₹{finalTotal}</span>
+                  <span className="text-green-700 font-semibold">
+                    ₹{finalTotal}
+                  </span>
                 </div>
               </div>
 
               <motion.button
                 whileTap={{ scale: 0.95 }}
+                onClick={() => router.push("/user/checkout")}
                 className="w-full mt-6 cursor-pointer bg-green-600 text-white py-3 rounded-full hover:bg-green-700 transition-all font-semibold text-sm sm:text-base"
               >
                 Proceed to Checkout
