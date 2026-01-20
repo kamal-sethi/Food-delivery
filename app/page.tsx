@@ -8,6 +8,7 @@ import Nav from "./components/Nav";
 import UserDashboard from "./components/UserDashboard";
 import AdminDashboard from "./components/AdminDashboard";
 import DeliveryBoy from "./components/DeliveryBoy";
+import Footer from "./components/Footer";
 
 export default async function Home() {
   await connectDb();
@@ -33,6 +34,7 @@ export default async function Home() {
       ) : (
         <DeliveryBoy />
       )}
+      {user.role=="user" && <Footer/>}
     </>
   );
 }
