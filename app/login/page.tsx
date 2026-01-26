@@ -20,7 +20,7 @@ import axios from "axios";
 import { handler } from "next/dist/build/templates/app-page";
 import { useRouter } from "next/navigation";
 import { signIn, useSession } from "next-auth/react";
-import { convertServerPatchToFullTree } from "next/dist/client/components/segment-cache/navigation";
+// import { convertServerPatchToFullTree } from "next/dist/client/components/segment-cache/navigation";
 
 const Login = () => {
   const [email, setEmail] = React.useState("");

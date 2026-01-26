@@ -1,3 +1,4 @@
+// import { User } from 'lucide-react';
 import mongoose from "mongoose";
 
 interface IUser {
@@ -40,4 +41,5 @@ const userSchema = new mongoose.Schema<IUser>(
 
 const User = mongoose.models.User || mongoose.model<IUser>("User", userSchema);
 
-export { User, IUser };
+export type { IUser };
+export { User };
