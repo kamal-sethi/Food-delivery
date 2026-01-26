@@ -1,6 +1,6 @@
 import connectDb from "@/app/lib/db";
 import Order from "@/app/models/order.model";
-import User from "@/app/models/user.model";
+import {User} from "@/app/models/user.model";
 
 import { NextRequest } from "next/server";
 
@@ -9,7 +9,7 @@ export async function POST(req: NextRequest) {
     await connectDb();
     const { userId, items, totalAmount, paymentMethod, address } =
       await req.json();
-    if (!userId || !items || !totalAmount || !paymentMethod || !address) {
+    if (!userId || !items ||  !totalAmount || !paymentMethod || !address) {
       return new Response(
         JSON.stringify({ message: "Missing required fields" }),
         { status: 400 },

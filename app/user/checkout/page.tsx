@@ -122,7 +122,7 @@ function Checkout() {
           city: address.city,
           state: address.state,
           fullAddress: address.fullAddress,
-          pincode: address.pincode,
+          pinCode: address.pincode,
           latitude: position[0],
           longitude: position[1],
         },

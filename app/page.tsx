@@ -1,6 +1,6 @@
 import Image from "next/image";
 import connectDb from "./lib/db";
-import User from "./models/user.model";
+import {User} from "./models/user.model";
 import { auth } from "./auth";
 import { redirect } from "next/navigation";
 import EditRoleMobile from "./components/EditRoleMobile";

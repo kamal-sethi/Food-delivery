@@ -53,4 +53,4 @@ const grocerySchema = new mongoose.Schema<IGrocery>(
 const Grocery =
   mongoose.models.Grocery || mongoose.model("Grocery", grocerySchema);
 
-export default Grocery;
+export { IGrocery, Grocery };

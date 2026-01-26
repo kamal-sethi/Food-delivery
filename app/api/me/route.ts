@@ -1,5 +1,5 @@
 import { auth } from "@/app/auth";
-import User from "@/app/models/user.model";
+import {User} from "@/app/models/user.model";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
