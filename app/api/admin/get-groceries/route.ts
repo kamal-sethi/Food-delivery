@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
 import { Grocery } from "../../../models/grocery.model";
 import { NextResponse } from "next/server";
 

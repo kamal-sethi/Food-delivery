@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
 import { auth } from "@/app/auth";
 import connectDb from "@/app/lib/db";
 import {User} from "@/app/models/user.model";

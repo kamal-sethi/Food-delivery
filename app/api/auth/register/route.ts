@@ -1,4 +1,6 @@
 // import { connect } from "http2";
+export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
 import { NextRequest, NextResponse } from "next/server";
 import connectDb from "@/app/lib/db";
 import {User} from "@/app/models/user.model";

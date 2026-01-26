@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
 import { auth } from "@/app/auth";
 import {User} from "@/app/models/user.model";
 import { NextRequest, NextResponse } from "next/server";

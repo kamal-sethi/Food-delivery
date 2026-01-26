@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
 import connectDb from "../../../lib/db";
 import Order from "../../../models/order.model";
 import { NextRequest, NextResponse } from "next/server";
