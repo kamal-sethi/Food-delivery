@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
 import { auth } from "../../../auth";
 import {uploadOnCloudinary} from "../../../lib/cloudinary";
 import connectDb from "../../../lib/db";
